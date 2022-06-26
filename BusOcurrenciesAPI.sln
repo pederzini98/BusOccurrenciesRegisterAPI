@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusOcurrenciesAPI", "BusOcurrenciesAPI.csproj", "{B987B320-F86A-4BF4-AC4B-4295F52DCF78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B987B320-F86A-4BF4-AC4B-4295F52DCF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B987B320-F86A-4BF4-AC4B-4295F52DCF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B987B320-F86A-4BF4-AC4B-4295F52DCF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B987B320-F86A-4BF4-AC4B-4295F52DCF78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59CCDA3C-1EE1-4BA6-8DD7-976891D5EC20}
+	EndGlobalSection
+EndGlobal
