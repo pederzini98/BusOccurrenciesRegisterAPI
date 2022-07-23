@@ -13,5 +13,12 @@ namespace BusOcurrenciesAPI.Business
         Task<User> FindUserByLogin(string email, string password);
         Task<bool> UpdateUser(string userId, User newUser);
         #endregion
+
+        #region Company
+        Task<bool> CreateCompanyAsync(Company company);
+        Task<Company> FindCompanyById(string id);
+        Task<bool> DeleteCompanyById(string id);
+        Task<bool> UpdateCompany(string id, Company newCompany);
+        #endregion
     }
 }

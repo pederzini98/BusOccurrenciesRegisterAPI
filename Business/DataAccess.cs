@@ -8,10 +8,12 @@ namespace BusOcurrenciesAPI.Business
     {
         private readonly IMongoDbData mongo;
         private readonly UserManager userManager;
+        private readonly CompanyManager companyManager;
         public DataAccess(IMongoDbData mongo)
         {
             this.mongo = mongo;
             userManager = new(mongo.GetUserCollection());
+            companyManager = new(mongo.GetCompanyCollection());
         }
 
         public bool CheckServer()
@@ -42,6 +44,30 @@ namespace BusOcurrenciesAPI.Business
         {
             return userManager.EditUser(userId, newUser);
         }
+        #endregion
+
+        #region Company
+        public Task<bool> CreateCompanyAsync(Company company)
+        {
+            return companyManager.CreateCompany(company);
+        }
+
+        public Task<Company> FindCompanyById(string id)
+        {
+            return companyManager.GetCompany(id);
+        }
+
+        public Task<bool> DeleteCompanyById(string id)
+        {
+            return companyManager.DeleteCompany(id);
+        }
+
+        public Task<bool> UpdateCompany(string id, Company newCompany)
+        {
+            return companyManager.EditCompany(id, newCompany);
+        }
+
+
         #endregion
     }
 }

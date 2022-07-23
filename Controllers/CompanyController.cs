@@ -1,4 +1,5 @@
-﻿using BusOcurrenciesAPI.Entities;
+﻿using BusOcurrenciesAPI.Business;
+using BusOcurrenciesAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusOcurrenciesAPI.Controllers
@@ -7,13 +8,19 @@ namespace BusOcurrenciesAPI.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
+        IDataAccess dataAccess;
+        public CompanyController(IDataAccess dataAccess)
+        {
+            this.dataAccess = dataAccess;
+        }
+
         [HttpGet("company/find")]
-        public async Task<IActionResult> GetCompany(string email, string password)
+        public async Task<IActionResult> GetCompanyAsync(string id)
         {
             try
             {
-
-                return Ok(true);
+                var result = await dataAccess.FindCompanyById(id);
+                return Ok(result);
             }
             catch (Exception e)
             {
@@ -22,12 +29,12 @@ namespace BusOcurrenciesAPI.Controllers
             }
         }
         [HttpPost("company/create")]
-        public async Task<IActionResult> PostCompany([FromBody] Company company)
+        public async Task<IActionResult> PostCompanyAsync([FromBody] Company company)
         {
             try
             {
-
-                return Ok(true);
+                var result = await dataAccess.CreateCompanyAsync(company);
+                return Ok(result);
             }
             catch (Exception e)
             {
@@ -36,12 +43,28 @@ namespace BusOcurrenciesAPI.Controllers
             }
         }
         [HttpDelete("company/delete")]
-        public async Task<IActionResult> DeleteCompany(string email)
+        public async Task<IActionResult> DeleteCompanyAsync(string id)
         {
             try
             {
+                var result = await dataAccess.DeleteCompanyById(id);
 
-                return Ok(true);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpPatch("company/edit")]
+        public async Task<IActionResult> UpdateCompanyAsync(string id, Company company)
+        {
+            try
+            {
+                var result = await dataAccess.UpdateCompany(id, company);
+
+                return Ok(result);
             }
             catch (Exception e)
             {
