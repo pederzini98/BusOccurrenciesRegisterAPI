@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace BusOcurrenciesAPI.Entities
 {
@@ -10,7 +11,9 @@ namespace BusOcurrenciesAPI.Entities
     }
     public class Occurrence
     {
-        [BsonElement(OBson.Id)] public string Id { get; set; }
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        [BsonId]
+        [BsonElement(OBson.Id)][JsonIgnore] public string Id { get; set; }
         [BsonElement(OBson.Name)] public string Name { get; set; }
         [BsonElement(OBson.Description)] public string Description { get; set; }
         [BsonElement(OBson.Type)] public OccurrenceType Type { get; set; }
@@ -20,7 +23,7 @@ namespace BusOcurrenciesAPI.Entities
         [BsonElement(OBson.CreationDate)] public DateTime CreationDate { get; set; }
         [BsonElement(OBson.Conclude)] public bool Conclude { get; set; }
         [BsonElement(OBson.Visualized)] public bool Visualized { get; set; }
-        [BsonElement(OBson.CreationDate)] public string Observation { get; set; }
+        [BsonElement(OBson.Observation)] public string Observation { get; set; }
     }
     public static class OBson
     {
@@ -31,7 +34,7 @@ namespace BusOcurrenciesAPI.Entities
         public const string IdUsusario = "id_usuario";
         public const string IdCompany = "id_company";
         public const string IdBus = "id_bus";
-        public const string CreationDate = "creation_date";
+        public const string CreationDate = "creation";
         public const string Conclude = "conclude";
         public const string Visualized = "visualized";
         public const string Observation = "observation";

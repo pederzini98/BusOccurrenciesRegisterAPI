@@ -1,20 +1,20 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace BusOcurrenciesAPI.Entities
 {
     [BsonIgnoreExtraElements]
     public class User
     {
-        [BsonElement(UBson.Id)] public string Id { get; set; }
-        [BsonElement(UBson.Name)] public string Name { get; set; }
-        [BsonElement(UBson.Email)] public  string Email { get; set; }
-        [BsonElement(UBson.Password)] public string Password { get; set; }
-        [BsonElement(UBson.Occurrencies)] public List<Occurrence> Occurrence { get; set; }
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        [BsonId]
+        [BsonElement(UBson.Id)][JsonIgnore] public string? Id { get; set; }
+        [BsonElement(UBson.Name)] public string? Name { get; set; }
+        [BsonElement(UBson.Email)] public  string? Email { get; set; }
+        [BsonElement(UBson.Password)] public string? Password { get; set; }
+        [BsonElement(UBson.Occurrencies)][BsonIgnoreIfNull] public List<Occurrence>? Occurrence { get; set; }
 
-        public User()
-        {
-
-        }
+    
     }
     public static class UBson
     {

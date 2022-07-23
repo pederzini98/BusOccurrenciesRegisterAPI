@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace BusOcurrenciesAPI.Entities
 {
@@ -6,12 +7,14 @@ namespace BusOcurrenciesAPI.Entities
     [BsonIgnoreExtraElements]
     public class Company
     {
-        [BsonElement(CBson.Id)] public string Id { get; set; }
-        [BsonElement(CBson.Name)] public string Name { get; set; }
-        [BsonElement(CBson.Email)] public string Email { get; set; }
-        [BsonElement(CBson.Password)] public  string Password { get; set; }
-        [BsonElement(CBson.Occurrencies)] public Occurrence? Occurrencies { get; set; }
-        [BsonElement(CBson.Fleet)] public List<Bus> Fleet { get; set; }
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        [BsonId]
+        [BsonElement(CBson.Id)][JsonIgnore] public string? Id { get; set; }
+        [BsonElement(CBson.Name)] public string? Name { get; set; }
+        [BsonElement(CBson.Email)] public string? Email { get; set; }
+        [BsonElement(CBson.Password)] public  string? Password { get; set; }
+        [BsonElement(CBson.Occurrencies)][BsonIgnoreIfNull] public Occurrence? Occurrencies { get; set; }
+        [BsonElement(CBson.Fleet)][BsonIgnoreIfNull] public List<Bus>? Fleet { get; set; }
 
       
     }

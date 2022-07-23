@@ -1,4 +1,6 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using BusOcurrenciesAPI.Business;
+using BusOcurrenciesAPI.Database;
+using Microsoft.OpenApi.Models;
 
 namespace BusOcurrenciesAPI
 {
@@ -12,13 +14,19 @@ namespace BusOcurrenciesAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<APIOptions>(Configuration.GetSection(APIOptions.SectionName));//Load Settings
+
             services.AddHttpClient(); //HttpClientFactory
             services.AddOptions();
+            services.AddSingleton<IMongoDbData, MongoDbData>();//Database access
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BusOcurrenciesAPI", Version = "v1" });
             });
+            services.AddSingleton<IDataAccess, DataAccess>(); //Create the Main manager class/object
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
