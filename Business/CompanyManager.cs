@@ -5,7 +5,7 @@ namespace BusOcurrenciesAPI.Business
 {
     public class CompanyManager : ICompanyManager
     {
-        IMongoCollection<Company> collection;
+        private readonly IMongoCollection<Company> collection;
         public CompanyManager(IMongoCollection<Company> collection)
         {
             this.collection = collection;

@@ -13,8 +13,8 @@ namespace BusOcurrenciesAPI.Entities
         [BsonElement(CBson.Name)] public string? Name { get; set; }
         [BsonElement(CBson.Email)] public string? Email { get; set; }
         [BsonElement(CBson.Password)] public  string? Password { get; set; }
-        [BsonElement(CBson.Occurrencies)][BsonIgnoreIfNull] public Occurrence? Occurrencies { get; set; }
-        [BsonElement(CBson.Fleet)][BsonIgnoreIfNull] public List<Bus>? Fleet { get; set; }
+        [BsonElement(CBson.Occurrencies)][BsonIgnoreIfNull] public List<string>? Occurrencies { get; set; }
+        [BsonElement(CBson.Fleet)][BsonIgnoreIfNull] public List<string>? Fleet { get; set; }
 
       
     }

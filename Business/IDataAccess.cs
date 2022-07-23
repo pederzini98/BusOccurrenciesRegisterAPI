@@ -20,5 +20,15 @@ namespace BusOcurrenciesAPI.Business
         Task<bool> DeleteCompanyById(string id);
         Task<bool> UpdateCompany(string id, Company newCompany);
         #endregion
+
+        #region Bus
+        Task<bool> CreateBus(Bus user);
+        Task<Bus> GetBus(string Id);
+        Task<bool> DeleteBus(string Id);
+        Task<bool> EditBus(string userId, Bus user);
+
+        Task<List<Bus>> FindBusByCompany(string companyId);
+        Task<List<Bus>> FindBusByStopPlace(string stopPlace);
+        #endregion
     }
 }
