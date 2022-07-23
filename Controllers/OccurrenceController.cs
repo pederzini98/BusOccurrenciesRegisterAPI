@@ -1,4 +1,5 @@
-﻿using BusOcurrenciesAPI.Entities;
+﻿using BusOcurrenciesAPI.Business;
+using BusOcurrenciesAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OccurrenceOcurrenciesAPI.Controllers
@@ -7,14 +8,43 @@ namespace OccurrenceOcurrenciesAPI.Controllers
     [ApiController]
     public class OccurrenceController : ControllerBase
     {
-
+        private readonly IDataAccess dataAccess;
+        public OccurrenceController(IDataAccess dataAccess)
+        {
+            this.dataAccess = dataAccess;
+        }
         [HttpGet("occurrence/find")]
-        public async Task<IActionResult> GetOccurrence(string email, string password)
+        public async Task<IActionResult> GetOccurrenceAsync(string id)
         {
             try
             {
+                return Ok(await dataAccess.GetOccurrence(id));
+            }
+            catch (Exception e)
+            {
 
-                return Ok(true);
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("occurrence/user/find")]
+        public async Task<IActionResult> GetUserOccurrencesAsync(string id)
+        {
+            try
+            {
+                return Ok(await dataAccess.GetAllOccurrenceOfUser(id));
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("occurrence/company/find")]
+        public async Task<IActionResult> GetCompanyOccurrencesAsync(string id)
+        {
+            try
+            {
+                return Ok(await dataAccess.GetAllOccurrenceOfCompany(id));
             }
             catch (Exception e)
             {
@@ -23,26 +53,23 @@ namespace OccurrenceOcurrenciesAPI.Controllers
             }
         }
         [HttpPost("occurrence/create")]
-        public async Task<IActionResult> PostOccurrence([FromBody] Occurrence Occurrence)
+        public async Task<IActionResult> PostOccurrenceAsync([FromBody] Occurrence occurrence)
         {
             try
             {
-
-                return Ok(true);
+                return Ok(await dataAccess.CreateOccurrence(occurrence));
             }
             catch (Exception e)
             {
-
                 return BadRequest(e.Message);
             }
         }
-        [HttpPatch("occurrence/create")]
-        public async Task<IActionResult> PatchOccurrence([FromBody] Occurrence Occurrence)
+        [HttpPatch("occurrence/edit")]
+        public async Task<IActionResult> PatchOccurrenceAsync(string id, Occurrence occurrence)
         {
             try
             {
-
-                return Ok(true);
+                return Ok(await dataAccess.EditOccurrence(id, occurrence));
             }
             catch (Exception e)
             {
@@ -51,12 +78,11 @@ namespace OccurrenceOcurrenciesAPI.Controllers
             }
         }
         [HttpDelete("occurrence/delete")]
-        public async Task<IActionResult> DeleteOccurrence(string email)
+        public async Task<IActionResult> DeleteOccurrenceAsync(string id)
         {
             try
             {
-
-                return Ok(true);
+                return Ok(await dataAccess.DeleteOccurrence(id));
             }
             catch (Exception e)
             {

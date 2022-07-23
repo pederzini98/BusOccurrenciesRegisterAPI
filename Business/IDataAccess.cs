@@ -30,5 +30,14 @@ namespace BusOcurrenciesAPI.Business
         Task<List<Bus>> FindBusByCompany(string companyId);
         Task<List<Bus>> FindBusByStopPlace(string stopPlace);
         #endregion
+
+        #region Occurrence
+        Task<bool> CreateOccurrence(Occurrence occurrence);
+        Task<Occurrence> GetOccurrence(string id);
+        Task<List<Occurrence>> GetAllOccurrenceOfCompany(string comapnyId);
+        Task<List<Occurrence>> GetAllOccurrenceOfUser(string userId);
+        Task<bool> DeleteOccurrence(string id);
+        Task<bool> EditOccurrence(string userId, Occurrence occurrence);
+        #endregion
     }
 }

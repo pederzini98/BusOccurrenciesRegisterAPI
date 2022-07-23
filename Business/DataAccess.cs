@@ -10,12 +10,14 @@ namespace BusOcurrenciesAPI.Business
         private readonly UserManager userManager;
         private readonly CompanyManager companyManager;
         private readonly BusManager busManager;
+        private readonly OccurrenceManager occurrenceManager;
         public DataAccess(IMongoDbData mongo)
         {
             this.mongo = mongo;
             userManager = new(mongo.GetUserCollection());
             companyManager = new(mongo.GetCompanyCollection());
             busManager = new(mongo.GetBusCollection());
+            occurrenceManager = new(mongo.GetOccurrenceCollection());
         }
 
         public bool CheckServer()
@@ -100,6 +102,40 @@ namespace BusOcurrenciesAPI.Business
         public Task<List<Bus>> FindBusByStopPlace(string stopPlace)
         {
             return busManager.FindBusByStopPlace(stopPlace);
+        }
+
+        #endregion
+
+        #region Occurrence
+
+        public Task<bool> CreateOccurrence(Occurrence occurrence)
+        {
+            return occurrenceManager.CreateOccurrence(occurrence);
+        }
+
+        public Task<Occurrence> GetOccurrence(string id)
+        {
+            return occurrenceManager.GetOccurrence(id);
+        }
+
+        public Task<List<Occurrence>> GetAllOccurrenceOfCompany(string comapnyId)
+        {
+            return occurrenceManager.GetAllOccurrenceOfCompany(comapnyId);
+        }
+
+        public Task<List<Occurrence>> GetAllOccurrenceOfUser(string userId)
+        {
+            return occurrenceManager.GetAllOccurrenceOfUser(userId);
+        }
+
+        public Task<bool> DeleteOccurrence(string id)
+        {
+            return occurrenceManager.DeleteOccurrence(id);
+        }
+
+        public Task<bool> EditOccurrence(string occurrenceId, Occurrence occurrence)
+        {
+            return occurrenceManager.EditOccurrence(occurrenceId, occurrence);
         }
 
         #endregion
