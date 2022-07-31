@@ -8,7 +8,7 @@ namespace BusOcurrenciesAPI.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        IDataAccess dataAccess;
+       private readonly IDataAccess dataAccess;
         public CompanyController(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;

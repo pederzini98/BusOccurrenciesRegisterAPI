@@ -21,7 +21,7 @@ namespace BusOcurrenciesAPI.Entities
         [BsonElement(BBson.Id)][JsonIgnore] public string? Id { get; set; }
         [BsonElement(BBson.BusNumber)] public int? BusNumber { get; set; }
         [BsonElement(BBson.CompanyId)] public string? CompanyId { get; set; }
-        [BsonElement(BBson.Passanger)] public string? Passanger { get; set; }
+        [BsonElement(BBson.Passanger)] public int? Passanger { get; set; }
         [BsonElement(BBson.Stops)] public List<string>? StopPlaces { get; set; }
 
 

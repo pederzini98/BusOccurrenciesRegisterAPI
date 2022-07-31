@@ -20,7 +20,7 @@ namespace BusOcurrenciesAPI.Entities
         [BsonElement(OBson.IdUsusario)] public string? IdUsusario { get; set; }
         [BsonElement(OBson.IdCompany)] public string? IdCompany { get; set; }
         [BsonElement(OBson.IdBus)] public int BusNumber { get; set; }
-        [BsonElement(OBson.CreationDate)] public DateTime CreationDate { get; set; }
+        [BsonElement(OBson.CreationDate)][JsonIgnore] public DateTime CreationDate { get; set; }
         [BsonElement(OBson.Conclude)] public bool Conclude { get; set; }
         [BsonElement(OBson.Visualized)] public bool Visualized { get; set; }
         [BsonElement(OBson.Observation)] public string? Observation { get; set; }
