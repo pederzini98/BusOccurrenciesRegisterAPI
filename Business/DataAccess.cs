@@ -79,9 +79,9 @@ namespace BusOcurrenciesAPI.Business
             return busManager.CreateBus(bus);
         }
 
-        public Task<Bus> GetBus(string id)
+        public Task<Bus> GetBus(int number)
         {
-            return busManager.GetBus(id);
+            return busManager.GetBus(number);
         }
 
         public Task<bool> DeleteBus(string id)

@@ -20,7 +20,7 @@ namespace BusOcurrenciesAPI
             services.AddOptions();
             services.AddSingleton<IMongoDbData, MongoDbData>();//Database access
             services.AddControllers();
-
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BusOcurrenciesAPI", Version = "v1" });
@@ -38,9 +38,13 @@ namespace BusOcurrenciesAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(c =>
+            {
+                c.AllowAnyHeader();
+                c.AllowAnyMethod();
+                c.AllowAnyOrigin();
+            });
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

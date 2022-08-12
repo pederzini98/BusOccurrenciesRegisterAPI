@@ -53,11 +53,11 @@ namespace BusOcurrenciesAPI.Business
             }
         }
 
-        public async Task<Bus> GetBus(string id)
+        public async Task<Bus> GetBus(int number)
         {
             try
             {
-                IAsyncCursor<Bus> cursor = await collection.FindAsync(x => x.Id == id);
+                IAsyncCursor<Bus> cursor = await collection.FindAsync(x => x.BusNumber == number);
                 Bus bus = await cursor.FirstAsync();
                 return bus;
             }

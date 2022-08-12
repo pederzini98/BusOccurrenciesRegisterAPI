@@ -10,11 +10,12 @@ namespace BusOcurrenciesAPI.Entities
         [BsonId]
         [BsonElement(UBson.Id)][JsonIgnore] public string? Id { get; set; }
         [BsonElement(UBson.Name)] public string? Name { get; set; }
-        [BsonElement(UBson.Email)] public  string? Email { get; set; }
+        [BsonElement(UBson.Email)] public string? Email { get; set; }
         [BsonElement(UBson.Password)] public string? Password { get; set; }
+        [BsonElement(UBson.Company)] public bool? IsCompany { get; set; }
         [BsonElement(UBson.Occurrencies)][BsonIgnoreIfNull] public List<Occurrence>? Occurrence { get; set; }
 
-    
+
     }
     public static class UBson
     {
@@ -23,6 +24,7 @@ namespace BusOcurrenciesAPI.Entities
         public const string Email = "email";
         public const string Password = "password";
         public const string Occurrencies = "ocurrencis";
+        public const string Company = "iscompany";
 
     }
 }
