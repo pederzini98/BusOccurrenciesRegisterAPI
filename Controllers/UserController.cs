@@ -35,7 +35,7 @@ namespace BusOcurrenciesAPI.Controllers
             try
             {
 
-                var result = await dataAccess.FindUserById(userId);
+                User? result = await dataAccess.FindUserById(userId);
                 return Ok(result);
             }
             catch (Exception e)

@@ -57,6 +57,7 @@ namespace OccurrenceOcurrenciesAPI.Controllers
         {
             try
             {
+                occurrence.CreationDate = DateTime.UtcNow.ToLocalTime();
                 return Ok(await dataAccess.CreateOccurrence(occurrence));
             }
             catch (Exception e)
@@ -77,8 +78,9 @@ namespace OccurrenceOcurrenciesAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpDelete("occurrence/delete")]
-        public async Task<IActionResult> DeleteOccurrenceAsync(string id)
+
+        [HttpGet("occurrence/deletesss")]
+        public async Task<IActionResult> DeleteOccurrenceAsync (string id)
         {
             try
             {

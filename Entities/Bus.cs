@@ -18,9 +18,10 @@ namespace BusOcurrenciesAPI.Entities
     {
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         [BsonId]
-        [BsonElement(BBson.Id)][JsonIgnore] public string? Id { get; set; }
+        [BsonElement(BBson.Id)] public string? Id { get; set; }
         [BsonElement(BBson.BusNumber)] public int? BusNumber { get; set; }
         [BsonElement(BBson.CompanyId)] public string? CompanyId { get; set; }
+        [BsonElement(BBson.CompanyName)] public string? CompanyName { get; set; }
         [BsonElement(BBson.Passanger)] public int? Passanger { get; set; }
         [BsonElement(BBson.Stops)] public List<string>? StopPlaces { get; set; }
 
@@ -31,6 +32,7 @@ namespace BusOcurrenciesAPI.Entities
         public const string? Id = "_id";
         public const string? BusNumber = "bus_number";
         public const string? CompanyId = "company";
+        public const string? CompanyName = "companyname";
         public const string? Passanger = "passangers";
         public const string? Stops = "stops";
 

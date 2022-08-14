@@ -14,6 +14,7 @@ namespace BusOcurrenciesAPI.Business
         {
             try
             {
+                occurrence.CompanyName = "Empresa 1";
                 await collection.InsertOneAsync(occurrence);
                 return true;
             }

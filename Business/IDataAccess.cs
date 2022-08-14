@@ -23,7 +23,7 @@ namespace BusOcurrenciesAPI.Business
 
         #region Bus
         Task<bool> CreateBus(Bus user);
-        Task<Bus> GetBus(int number);
+        Task<Bus> GetBus(string id);
         Task<bool> DeleteBus(string Id);
         Task<bool> EditBus(string userId, Bus user);
 

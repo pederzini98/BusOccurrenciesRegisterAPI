@@ -53,11 +53,11 @@ namespace BusOcurrenciesAPI.Business
             }
         }
 
-        public async Task<Bus> GetBus(int number)
+        public async Task<Bus> GetBus(string id)
         {
             try
             {
-                IAsyncCursor<Bus> cursor = await collection.FindAsync(x => x.BusNumber == number);
+                IAsyncCursor<Bus> cursor = await collection.FindAsync(x => x.Id == id);
                 Bus bus = await cursor.FirstAsync();
                 return bus;
             }
@@ -85,13 +85,25 @@ namespace BusOcurrenciesAPI.Business
             try
             {
                 List<Bus> buses = new();
-                var result = await collection.FindAsync(x => x.CompanyId == stopPlace).GetAwaiter().GetResult().ToListAsync();
+
+                var result = await collection.FindAsync(x => x.BusNumber > 0).GetAwaiter().GetResult().ToListAsync();
 
                 foreach (var item in result)
                 {
-                    if ((item.StopPlaces is not null) && (item.StopPlaces.Any() && item.StopPlaces.Contains(stopPlace)))
+                    if (item.BusNumber.ToString().Contains(stopPlace))
                     {
                         buses.Add(item);
+                        continue;
+                    }
+                    if ((item.StopPlaces is not null) && (item.StopPlaces.Any()))
+                    {
+                        foreach (var place in item.StopPlaces)
+                        {
+                            if (place.ToLower().Contains(stopPlace.ToLower()))
+                            {
+                                buses.Add(item);
+                            }
+                        }
                     }
                 }
                 return buses;

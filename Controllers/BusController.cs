@@ -15,11 +15,11 @@ namespace BusOcurrenciesAPI.Controllers
         }
 
         [HttpGet("bus/find")]
-        public async Task<IActionResult> GetBusAsync(int number)
+        public async Task<IActionResult> GetBusAsync(string id)
         {
             try
             {
-                var result = await dataAccess.GetBus(number);
+                var result = await dataAccess.GetBus(id);
                 return Ok(result);
             }
             catch (Exception e)
